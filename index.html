@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>任译喵 TranslateBuff 自媒体推广方案</title>
+<style>
+:root{
+  --brand:#4f46e5; --brand2:#7c3aed; --ink:#1e2235; --sub:#5b6178;
+  --bg:#f4f5fa; --card:#ffffff; --line:#e7e9f2;
+  --bili:#fb7299; --dy:#161823; --xhs:#ff2442;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* hero */
+.hero{background:linear-gradient(135deg,#3d2fc4 0%,#6a3de8 55%,#8b5cf6 100%);color:#fff;padding:56px 0 40px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero h1{font-size:30px;letter-spacing:.5px}
+.hero .sub{margin-top:10px;font-size:15px;opacity:.9}
+.hero .chips{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.hero .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 12px;font-size:13px}
+.hero .chip b{font-weight:600}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto}
+nav a{padding:13px 14px;font-size:14px;color:var(--sub);white-space:nowrap;border-bottom:2px solid transparent}
+nav a:hover{color:var(--brand)}
+nav a.active{color:var(--brand);border-bottom-color:var(--brand);font-weight:600}
+
+/* sections */
+section{padding:44px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:20px}
+.sec-head .no{font-size:13px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:8px;padding:3px 10px}
+.sec-head h2{font-size:22px}
+.sec-head .en{color:#a6abc2;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.hint{font-size:12.5px;color:var(--sub);background:#eef0ff;border-left:3px solid var(--brand);border-radius:6px;padding:10px 14px;margin-bottom:20px}
+
+/* stat cards */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(30,34,53,.04)}
+.stat .num{font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{font-size:14px;font-weight:600;margin-top:4px}
+.stat .desc{font-size:12.5px;color:var(--sub);margin-top:6px}
+.stat a.link{display:inline-block;margin-top:10px;font-size:12.5px;color:var(--brand);border-bottom:1px dashed var(--brand)}
+.concl{margin-top:20px;background:linear-gradient(135deg,#eef0ff,#f6ecff);border:1px solid #d9d8ff;border-radius:14px;padding:16px 20px;font-size:14.5px}
+.concl b{color:var(--brand)}
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.comp{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(30,34,53,.04);display:flex;flex-direction:column;gap:10px}
+.comp .cname{font-size:16.5px;font-weight:700}
+.comp .ctag{display:inline-block;background:#eef0ff;color:var(--brand);border-radius:6px;padding:2px 8px;font-size:11.5px;font-weight:600;width:fit-content}
+.comp .cstatus{font-size:12.5px;color:var(--sub)}
+.comp .canal{font-size:13px;line-height:1.6}
+.comp .clinks{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:6px}
+/* 竞品卡片内的紧凑两行式链接 */
+.lk.lkc{flex-wrap:wrap;row-gap:3px;padding:8px 10px}
+.lk.lkc .lbl{flex:1 1 100%;order:2;white-space:normal;font-size:12.5px;line-height:1.45}
+.lk.lkc .go{order:1;margin-left:auto}
+.lk.lkc .meta{order:3;background:none;border:none;padding:0;font-size:11px;color:var(--sub)}
+.pf-grid{display:grid;gap:16px}
+.pf-grid.pf-main{grid-template-columns:repeat(2,1fr);margin-bottom:16px}
+.pf-grid.pf-sync{grid-template-columns:repeat(3,1fr)}
+.pf{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 2px 10px rgba(30,34,53,.04)}
+.pf.main{border:2px solid #b7b0ff;background:linear-gradient(180deg,#faf9ff 0%,#fff 60%)}
+.pf.sync{background:#fbfbfd}
+.pf .pfhead{display:flex;align-items:center;gap:10px}
+.pf .pfname{font-size:17px;font-weight:700}
+.pf .role{font-size:11.5px;font-weight:700;color:#fff;border-radius:6px;padding:3px 10px}
+.pf .role.main{background:linear-gradient(135deg,var(--brand),var(--brand2))}
+.pf .role.sync{background:#9aa0b5}
+.pf .sec{font-size:13px;line-height:1.65;padding:9px 11px;border-radius:8px}
+.pf .seclbl{display:block;font-size:11px;font-weight:700;margin-bottom:3px}
+.pf .analysis{background:#eef0ff;border:1px solid #dcd9ff}
+.pf .analysis .seclbl{color:var(--brand)}
+.pf .fmt{background:#f2fbf5;border:1px solid #d3eedd}
+.pf .fmt .seclbl{color:#1a7f4b}
+.hot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:900px){
+  .comp-grid{grid-template-columns:repeat(2,1fr)}
+  .pf-grid.pf-main{grid-template-columns:1fr 1fr}
+  .pf-grid.pf-sync{grid-template-columns:repeat(2,1fr)}
+  .hot-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:600px){
+  .comp-grid{grid-template-columns:1fr}
+  .pf-grid.pf-main{grid-template-columns:1fr}
+  .pf-grid.pf-sync{grid-template-columns:1fr}
+  .hot-grid{grid-template-columns:1fr}
+}
+
+/* strategy */
+.quote{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;font-size:17px;box-shadow:0 2px 10px rgba(30,34,53,.04)}
+.quote .big{font-size:22px;font-weight:700;color:var(--brand)}
+.sell{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.sell .s{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13.5px;box-shadow:0 1px 4px rgba(30,34,53,.04)}
+.sell .s b{color:var(--brand2)}
+.bars{margin-top:22px;display:flex;flex-direction:column;gap:14px}
+.bar-row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.bar-row:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(76,61,230,.12)}
+.bar-row .top{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+.bar-row .top span:last-child{color:var(--brand);font-size:12.5px;font-weight:500}
+.bar-track{height:8px;background:#eef0f6;border-radius:99px;margin-top:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .8s ease}
+.bar-row .why{font-size:12.5px;color:var(--sub);margin-top:6px}
+
+/* audience */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;align-items:center}
+.toolbar input{flex:1;min-width:180px;border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:14px;outline:none;background:#fff}
+.toolbar input:focus{border-color:var(--brand)}
+.aud{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden;box-shadow:0 2px 8px rgba(30,34,53,.04)}
+.aud-head{display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;user-select:none}
+.aud-head:hover{background:#fafaff}
+.aud-head .idx{flex:none;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+.aud-head .t{flex:1;min-width:0}
+.aud-head .t .name{font-size:16px;font-weight:700}
+.aud-head .t .scene{font-size:12.5px;color:var(--sub);margin-top:2px}
+.aud-head .theme{flex:none;text-align:right;font-size:13px;color:var(--brand);font-weight:600;max-width:45%}
+.aud-head .arrow{flex:none;color:#a6abc2;transition:transform .25s;font-size:12px}
+.aud.open .aud-head .arrow{transform:rotate(180deg)}
+.aud-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.aud.open .aud-body{max-height:1200px}
+.aud-inner{padding:0 20px 18px;border-top:1px dashed var(--line);margin:0 20px;padding-top:14px}
+.aud-inner .theme-line{font-size:13.5px;margin-bottom:12px}
+.aud-inner .theme-line b{color:var(--brand2)}
+.links{display:flex;flex-direction:column;gap:8px}
+.lk{display:flex;align-items:center;gap:10px;background:#f7f8fd;border:1px solid var(--line);border-radius:10px;padding:10px 12px;transition:background .15s,border-color .15s}
+.lk:hover{background:#eef0ff;border-color:#c9c6ff}
+.pl{flex:none;font-size:11px;font-weight:700;color:#fff;border-radius:6px;padding:2px 8px}
+.pl.bilibili{background:var(--bili)}
+.pl.douyin{background:var(--dy)}
+.pl.xhs{background:var(--xhs)}
+.lk .lbl{flex:1;min-width:0;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lk .meta{flex:none;font-size:11.5px;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.lk .go{flex:none;color:var(--brand);font-size:12px;font-weight:600;opacity:.7}
+.lk .wip{flex:none;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px solid #fcd34d;border-radius:6px;padding:1px 7px;white-space:nowrap}
+.lk.lkc .wip{order:4}
+.hot{margin-top:22px;background:linear-gradient(135deg,#fff7ed,#ffeef5);border:1px solid #ffdfc9;border-radius:16px;padding:20px}
+.hot h3{font-size:16px;margin-bottom:12px}
+.hot .item{margin-bottom:14px}
+.hot .item:last-child{margin-bottom:0}
+.hot .item .h{font-size:14px;font-weight:600;margin-bottom:6px}
+.hot .links{margin-top:6px}
+
+/* tabs */
+.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.tab-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 18px;font-size:14px;cursor:pointer;color:var(--sub);font-family:inherit}
+.tab-btn.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent;font-weight:600}
+.tab-panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 2px 8px rgba(30,34,53,.04)}
+.tab-panel.active{display:block}
+.tab-panel ol{padding-left:20px}
+.tab-panel li{margin-bottom:10px;font-size:14.5px}
+.tab-panel li b{color:var(--brand2)}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:26px 0 40px;color:var(--sub);font-size:12.5px}
+footer .wrap{display:flex;flex-direction:column;gap:8px}
+@media (max-width:640px){
+  .hero h1{font-size:24px}
+  .aud-head .theme{display:none}
+  .lk .meta{display:none}
+  .sec-head h2{font-size:19px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>任译喵 TranslateBuff 自媒体推广方案</h1>
+    <p class="sub">B站 · 小红书 · 抖音 ｜ 以自然流量拉新注册、获取免费用户</p>
+    <div class="chips">
+      <span class="chip">产品目前形态/功能：<b>浏览器插件</b>（网页翻译 / 划词翻译 / 输入框翻译 / 视频字幕）</span>
+      <span class="chip">产品未来形态/功能：<b>客户端</b>（识图翻译 / 游戏汉化 / 同声传译？）</span>
+      <span class="chip">官网：translatebuff.cn</span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#competitors" class="active">竞品 / 对标账号</a>
+  <a href="#distribution">平台分发思路</a>
+  <a href="#audiences">选题方向 &amp; 产品受众</a>
+  <a href="#hot">实时热点</a>
+</div></nav>
+
+<main class="wrap">
+
+  <!-- 一、竞品 / 对标账号 -->
+  <section id="competitors">
+    <div class="sec-head"><span class="no">一</span><h2>竞品 / 对标账号</h2><span class="en">Competitors &amp; Benchmarks</span></div>
+    <div class="hint">📌 以下为与任译喵同为浏览器插件的同类产品（网页翻译 / 划词翻译 / 输入框翻译 / 视频字幕），含 2026 年活跃产品与 2026 年前的热度产品；参考链接均来自 B站 / 小红书，B站链接经官方接口核实发布时间。</div>
+    <div class="comp-grid" id="compGrid"></div>
+    <div class="concl" id="compConcl"></div>
+  </section>
+
+  <!-- 二、平台分发思路 -->
+  <section id="distribution">
+    <div class="sec-head"><span class="no">二</span><h2>平台分发思路</h2><span class="en">Distribution Strategy</span></div>
+    <div class="hint">🎯 分发原则：<b>主攻小红书 + B站</b>，<b>抖音 / 快手 / 视频号做内容同步</b>。每张卡片：分析 → 该平台的内容形式。</div>
+    <div class="pf-grid pf-main" id="pfGridMain"></div>
+    <div class="pf-grid pf-sync" id="pfGridSync"></div>
+    <div class="concl" id="pfConcl"></div>
+  </section>
+
+  <!-- 三、选题方向 & 产品受众 -->
+  <section id="audiences">
+    <div class="sec-head"><span class="no">三</span><h2>选题方向 &amp; 产品受众</h2><span class="en">8 大人群 · 三平台参考案例</span></div>
+    <div class="hint">🔗 链接说明：三个平台的案例均为 2026 年内容 —— B站经官方接口逐条核实发布时间；小红书为登录状态下实采，附赞/藏数据（链接若失效，搜标题即可找到）；抖音为分享链接打开核实。点击每张卡片展开案例链接。🔖 标注「<b style="color:#b45309">含未上线功能</b>」的参考内容涉及游戏汉化 / 漫画识图 / 同声传译 / PDF文献翻译等未来功能，当前仅作选题方向储备，发布节奏跟随功能上线而定。</div>
+    <div class="toolbar"><input id="audFilter" placeholder="🔍 按人群 / 场景 / 选题关键词筛选，例如：文献、外贸、字幕…"></div>
+    <div id="audList"></div>
+  </section>
+
+  <!-- 四、实时热点 -->
+  <section id="hot">
+    <div class="sec-head"><span class="no">四</span><h2>实时热点</h2><span class="en">Real-time Hot Topics</span></div>
+    <div class="hint">⚡ 热点响应机制：热点发生后 <b>24 小时内出稿</b>。任译喵可调用 AI 大模型进行翻译，因此 AI 类热点（如 DeepSeek V4 Pro 正式版上线）天然与产品强关联——<b>热点即卖点，测评即种草</b>。以下每张卡片：触发场景 → 内容打法 → 参考链接。</div>
+    <div class="hot-grid" id="hotGrid"></div>
+    <div class="concl" id="hotConcl"></div>
+  </section>
+
+  <!-- 四、内容制作思路（已合并入第二部分"平台分发思路"，本节删除） -->
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>任译喵 TranslateBuff 自媒体推广方案 · 案例链接核实于 2026-08-30</div>
+    <div>本页为单文件交互页面：点击导航跳转、点击人群卡片展开案例、点击链接直达对应平台内容。</div>
+  </div>
+</footer>
+
+<script>
+/* ============ 数据 ============ */
+const COMPETITORS = [
+ {name:'沉浸式翻译', tag:'直接竞品 · 浏览器插件', status:'全球 2000 万+ 用户，2026 年仍在高频更新与投放',
+  analysis:'功能：网页翻译 / 双语对照 / 输入框翻译 / 视频字幕——同类中体量最大、品牌最强。对我们的启示：它虽也支持视频字幕，但任译喵以"免费 + 可调用 AI 大模型翻译 + 视频字幕场景心智"打组合拳，并叠加未来客户端形态（识图 / 游戏汉化 / 同传）形成差异；同时蹭它的关键词做横评截流。',
+  links:[
+   {p:'bilibili', lbl:'一个翻译插件凭什么做到全球两千万级用户？深度分析（果叔AI）', meta:'16.4万播放 · 2026-06', u:'https://www.bilibili.com/video/BV1buE26tExv/'},
+   {p:'xhs', lbl:'高效免费的浏览器翻译插件—沉浸式翻译', meta:'989赞/876藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/69c2a9590000000023027a94?xsec_token=ABoL6hzKJoCRhKAYa66FVr5CnnERc9CjBsVAcY5y7n8JU='},
+   {p:'xhs', lbl:'沉浸式翻译1.27.3更新｜界面更简洁好用', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/69e0ade8000000001f004961?xsec_token=ABjkz_qb02DZItfRccmvZVDu6wwQiUqFbdqo39ZDENsCQ='},
+  ]},
+ {name:'简约翻译', tag:'形态最接近 · 浏览器插件', status:'2026 年 7 月仍有新内容在推',
+  analysis:'功能：网页翻译 / 划词翻译 / 输入框翻译 / 视频字幕——与任译喵功能几乎一致的新锐插件，公开内容声量尚小（目前仅少量测评视频），是内容上的直接对标对象，其标题公式与演示结构可直接借鉴；我们以"免费 + AI 大模型调用 + 未来客户端形态"做出区分。',
+  links:[
+   {p:'bilibili', lbl:'网页/划词/视频字幕全搞定！超强Chrome翻译插件-简约翻译', meta:'985播放 · 2026-07', u:'https://www.bilibili.com/video/BV1edKv6VEfg/'},
+  ]},
+ {name:'彩云小译', tag:'老牌热度插件 · 浏览器插件', status:'热度高峰 2020-2022 年，B站至今仍有安装教程流量',
+  analysis:'功能：网页全文双语对照 / 输入框翻译。曾是最火的翻译插件之一，目前已过热度高峰。对我们的启示：插件产品生命周期内要尽快建立品牌，内容上做"老牌插件 vs 新插件"的对比钩子。',
+  links:[
+   {p:'bilibili', lbl:'折腾chrome插件之路——彩云小译', meta:'3556播放 · 2020-03', u:'https://www.bilibili.com/video/BV1NE411u78q/'},
+   {p:'bilibili', lbl:'彩云小译crx插件安装到Chrome/Edge的方法（官方号）', meta:'1421播放 · 2022-11', u:'https://www.bilibili.com/video/BV1tK411R7DM/'},
+  ]},
+ {name:'沙拉查词', tag:'老牌划词插件 · 浏览器插件', status:'2019-2021 年学生党热度高，2025 年仍有新内容',
+  analysis:'功能：划词翻译 / 多词典聚合——专注"划词查词"场景。对我们的启示：垂直场景（如读文献划词）是学生党的强需求，任译喵的划词翻译可对标其场景内容。',
+  links:[
+   {p:'bilibili', lbl:'沙拉查词，在浏览器实现划词翻译', meta:'670播放 · 2025-02', u:'https://www.bilibili.com/video/BV1XUApeJEfF/'},
+   {p:'bilibili', lbl:'沙拉查词XQuicker：所见所划，即为所查', meta:'443播放 · 2022-09', u:'https://www.bilibili.com/video/BV1ta411u7Mt/'},
+  ]},
+];
+
+const COMP_CONCL = '同类插件中，沉浸式翻译、简约翻译覆盖全场景且 2026 年仍活跃，重点参考，彩云小译、沙拉查词代表过气但仍有流量沉淀的老牌产品，参考内容/关键词截流——竞品虽都有视频字幕，但任译喵的差异化是组合拳：免费 + 可调用 AI 大模型翻译 + 主推"视频字幕"场景心智，并延伸至后续待开发的游戏汉化/识图/同声传译等功能。';
+
+const DISTRIBUTION = [
+ {name:'小红书', role:'主攻', main:true,
+  analysis:'中国留学生最集中、活跃度最高的社交平台；恰逢开学季，与任译喵最大受众（学生党/留学生/语言学习者）高度匹配。同时，图文+短视频内容轻、收藏率高，"翻译神器"等关键词搜索流量长尾，工具类"收藏=稍后下载"的转化路径最短，平台官方翻译功能话题还可借势。',
+  fmt:'6-9 图图文笔记：封面大字+效果对比图 → 痛点场景+步骤截图（每步一句话）→ 最后一张功能对比表（收藏率最高）；文案前 20 字带"免费/神器/留学生"等关键词；标签 #翻译神器 #留学生必备 等。'},
+ {name:'B站', role:'主攻', main:true,
+  analysis:'中长视频教程/测评的沉淀平台，搜索流量长期有效，作为另一主攻阵地；软件测评生态成熟，翻译类内容被验证自带流量（竞品分析视频 16.4 万播放），简介+置顶评论挂链接的转化链路成熟，内容可做成合集持续吃搜索长尾。',
+  fmt:'1-5 分钟视频（教程/测评）：开头放效果对比画面点题 → 讲痛点场景 → 逐功能演示（网页翻译→划词→输入框→视频字幕）→ 结尾总结卖点+引导（"插件免费，链接在简介/评论区"）。'},
+ {name:'抖音', role:'同步分发', main:false,
+  analysis:'2026 年抖音审核机制较严格（上次 AI 管家项目推广失败的经验），本次不投入太多精力，仅做内容同步；流量盘子最大，但工具类硬广易被限流，同步成本接近零，保留平台存在感，若某条自然跑出爆款再针对性加码。',
+  fmt:'B站视频 30-60 秒切片，竖屏/横屏皆可：前 5 秒画面有反差（全英文视频→中文字幕）→ 演示核心功能即可；同步版注意"站外导流"话术以规避审核。'},
+ {name:'快手', role:'同步分发', main:false,
+  analysis:'与抖音一起做内容同步，不额外投入精力；与抖音同为短视频形态，一条素材直接同发，快手学生与下沉市场同样有翻译需求，工具类内容审核相对宽松，同步收益/成本比高。',
+  fmt:'与抖音同款：B站视频 30-60 秒切片，素材完全复用，无需单独制作。'},
+ {name:'视频号', role:'同步分发', main:false,
+  analysis:'与抖音、快手一起做内容同步，不额外投入精力；依托微信生态，内容易被转发到微信群/朋友圈（留学群、家长群传播力强），平台内翻译类内容供给少、竞争小，同步成本同样接近零。',
+  fmt:'与抖音同款切片 + 可转发的图文卡片，素材完全复用。'},
+];
+
+const DIST_CONCL = '一句话总结：主攻两个与用户高度匹配的平台（小红书 + B站），其余三个平台零成本同步（抖音 / 快手 / 视频号）——把全部精力放在内容本身，而不是平台运营。';
+
+const AUDIENCES = [
+ {id:'a1', idx:'01', name:'在读大学生、研究生', scene:'写论文 · 读英文文献', theme:'论文和文献一键翻译对照',
+  links:[
+   {p:'bilibili', wip:true, lbl:'研究生必备文献阅读技能-沉浸式翻译+Zotero', meta:'1.3万播放 · 2026-05', u:'https://www.bilibili.com/video/BV1AK99B4EGP/'},
+   {p:'bilibili', wip:true, lbl:'Zotero PDF2zh对照翻译超好用', meta:'1563播放 · 2026-08', u:'https://www.bilibili.com/video/BV1habf64ESZ/'},
+   {p:'bilibili', wip:true, lbl:'Zotero PDF2ZH翻译插件安装教程（UP主8月系列教程）', meta:'2026-08', u:'https://www.bilibili.com/video/BV1QrhF6AEKB/'},
+   {p:'douyin', lbl:'英文网站最严厉的母亲 #翻译插件 #研究生日常', meta:'2026-05-21', u:'https://www.douyin.com/video/7642285702588330868'},
+   {p:'xhs', wip:true, lbl:'Zotero实现左右对照翻译，小白教程', meta:'1245赞/1449藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6a79e8400000000006005e10?xsec_token=ABhUDUrPLijWfCKNsR5kHjLpWHn7ltduiCcTp7SbyBZIA='},
+   {p:'xhs', lbl:'吐血整理｜研究生必备工具（2026年最新）', meta:'445赞/736藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6a865dcb0000000014026809?xsec_token=AB7dqCJCQdMMcagbiuvhWELM1SoQWve_DJsTGyVmqsX-U='},
+   {p:'xhs', lbl:'澳洲硕士效率翻倍｜论文党私藏翻译插件真香', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a7c226f000000003301a276?xsec_token=ABNu8Le-kZPPG6m1BqSYwkgtCwmjPQw4f5xmC0AJmpEyg='},
+  ]},
+ {id:'a2', idx:'02', name:'准留学生、留学生', scene:'查学校官网 · 选校资料 · 全英授课', theme:'海外网站一键变中文',
+  links:[
+   {p:'bilibili', lbl:'英文资料看太慢？一个插件让网站和视频一键变中文', meta:'2026-08', u:'https://www.bilibili.com/video/BV1xSh364Emw/'},
+   {p:'xhs', lbl:'全英授课如果听不懂怎么办？求真实推荐', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a68a0ca0000000011016442?xsec_token=ABJyJG01iBhAxEpDPbJLWeMeEwduk3GhZEs3owwspQ0Oo='},
+   {p:'xhs', lbl:'这12个AI工具，澳留子越早知道越好', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a7993640000000025017f27?xsec_token=ABhUDUrPLijWfCKNsR5kHjLqcJtzkZpMup7f7rGcezyLw='},
+   {p:'xhs', lbl:'8️⃣个翻译软件帮英国新留子搞定语言问题', meta:'4679赞/3710藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6701c59e000000001902c8b0?xsec_token=ABHhoZ0btsBrD5MJgFJmpb7y-p7YknWcDNtYvjQpzr5NI='},
+  ]},
+ {id:'a3', idx:'03', name:'追剧追番党', scene:'美剧 · 日漫 · 韩剧 · 生肉和无字幕视频', theme:'无字幕视频自动生成双语字幕',
+  links:[
+   {p:'bilibili', wip:true, lbl:'浏览器最佳翻译插件！生肉漫画/视频字幕/网页双语翻译', meta:'4587播放 · 2026-08', u:'https://www.bilibili.com/video/BV1Zput6YEjv/'},
+   {p:'bilibili', lbl:'教你用deepseek大模型翻译工具，实时翻译英文视频字幕', meta:'2026-08', u:'https://www.bilibili.com/video/BV16d8H6uE5g/'},
+   {p:'bilibili', lbl:'实时视频翻译软件（竞品官方号，可观察其内容打法）', meta:'2026-08', u:'https://www.bilibili.com/video/BV1ND8x6FEg4/'},
+   {p:'xhs', lbl:'啃生肉必备神器！海外追剧党建议收藏', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a704caa000000002500792f?xsec_token=ABBOQtzPa-SNcewS_Y0UzNswgbpJrgpYvi37nolNZoqiM='},
+   {p:'xhs', lbl:'精准高效！一键生成自动对齐的双语字幕', meta:'2026-05-17', u:'https://www.xiaohongshu.com/explore/6a08a7890000000007011b4c?xsec_token=ABLPSsP_I22TjWOQL6YZR02Ch78Nmjou46eeI08wCW4lw='},
+   {p:'xhs', wip:true, lbl:'GitHub推荐：视频自动翻译配音', meta:'2026-06-09', u:'https://www.xiaohongshu.com/explore/6a281fdf000000003502ae63?xsec_token=ABVwrUTYjfKh6PKJg4qb6pCGKV9AJmUt6jgKY7gtWrIOM='},
+   {p:'xhs', lbl:'看到目前汉化做得最好的字幕组！', meta:'9259赞/5595藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/695e6d78000000002203126f?xsec_token=ABUVArnRLai-pdvYtXRRCXMTo6GY_IJR3rBLpWmRP4Ed8='},
+   {p:'douyin', lbl:'抖音站内搜索：视频翻译 / 双语字幕', meta:'搜索词', u:'https://www.douyin.com/search/%E8%A7%86%E9%A2%91%E7%BF%BB%E8%AF%91?type=video'},
+  ]},
+ {id:'a4', idx:'04', name:'游戏玩家', scene:'外服游戏 · 无官中游戏', theme:'游戏里看不懂的文字一键翻译',
+  links:[
+   {p:'bilibili', wip:true, lbl:'电脑屏幕文字随时翻译！游戏图片网页一秒识别', meta:'2026-08', u:'https://www.bilibili.com/video/BV1Fe4f6uEDH/'},
+   {p:'xhs', wip:true, lbl:'求推荐看直播可以实时翻译（真实需求佐证）', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a4931010000000016025267?xsec_token=ABQAGLTQjnGjf1t8V2H-IsaI41V6Bpl2jQcYHjmJMsHA4='},
+   {p:'douyin', lbl:'抖音站内搜索：游戏翻译 / 生肉翻译', meta:'搜索词', u:'https://www.douyin.com/search/%E7%94%9F%E8%82%89%E7%BF%BB%E8%AF%91?type=video'},
+  ]},
+ {id:'a5', idx:'05', name:'外贸业务员', scene:'英文邮件 · WhatsApp 客户沟通', theme:'邮件和聊天一键看懂、一键回复',
+  links:[
+   {p:'bilibili', lbl:'外贸人必看 WhatsApp自动翻译 + AI一键生成回复', meta:'2026-08', u:'https://www.bilibili.com/video/BV1Hubm6CE3Q/'},
+   {p:'bilibili', wip:true, lbl:'我说母语 对方直接听到翻译后的语音（同传场景）', meta:'2026-08', u:'https://www.bilibili.com/video/BV1Hu8G6SEQe/'},
+   {p:'xhs', lbl:'海外社媒实时翻译神器｜实测工具分享', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a5f6748000000000f0289e9?xsec_token=ABsQdPrZQJUpTKClFDeQByZmcLhy0rGY0adzqcCSpfmEo='},
+   {p:'xhs', wip:true, lbl:'ChatGPT和Codex在口译工作中的应用实例', meta:'618赞/468藏 · 2026-08-08', u:'https://www.xiaohongshu.com/explore/6a771bbf0000000027023487?xsec_token=ABTEQjwswEXSbM_4KlnoGv-fIcx0zQWmRmvBGMBKSW1AY='},
+  ]},
+ {id:'a6', idx:'06', name:'跨境电商卖家', scene:'选品调研 · 看海外竞品', theme:'竞品网站和选品资料一键翻译',
+  links:[
+   {p:'bilibili', lbl:'英文资料看太慢？一个插件让网站和视频一键变中文', meta:'2026-08 · 从"看竞品网站"切入', u:'https://www.bilibili.com/video/BV1xSh364Emw/'},
+   {p:'xhs', lbl:'跨境人必备工具清单｜收藏这一篇就够了', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a752d2f000000002c00530e?xsec_token=AB1yLwNxmqGtrfpsYRRa-YmiD5d0nw49HKU1z7mb2bQzg='},
+  ]},
+ {id:'a7', idx:'07', name:'做视频的自媒体创作者', scene:'配字幕 · 搬运 · 多语言发布', theme:'几分钟给视频配上双语字幕',
+  links:[
+   {p:'bilibili', lbl:'网页/划词/视频字幕全搞定！超强Chrome翻译插件-简约翻译（与TranslateBuff形态最接近）', meta:'2026-07', u:'https://www.bilibili.com/video/BV1edKv6VEfg/'},
+   {p:'bilibili', lbl:'教你用deepseek大模型翻译工具，实时翻译英文视频字幕', meta:'2026-08', u:'https://www.bilibili.com/video/BV16d8H6uE5g/'},
+   {p:'xhs', lbl:'双语字幕自动化剪辑Workflow，踩坑全记录', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a461bd20000000015024d82?xsec_token=ABQh_uEAqLOXhlWsB4vRjx3tW7vtPFYiCSpVZYn3lYMjA='},
+   {p:'xhs', lbl:'GitHub上火出圈的视频翻译神器，好用高效', meta:'69赞/184藏 · 2026-07-22', u:'https://www.xiaohongshu.com/explore/6a603e4e000000001d00c0a0?xsec_token=AB9j7vhad56hOlxqR3vyeJojiG6xUGwD6dIMeOQ2zqJqs='},
+   {p:'xhs', lbl:'短剧字幕翻译很挣钱吗？', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a38fdab000000001102ee91?xsec_token=ABJ9CY4LNweMbCbPcbuWo2l2fjKCADzophk2RLkf45kgc='},
+   {p:'xhs', lbl:'求推荐最好用的视频翻译软件（真实需求佐证）', meta:'747赞/1014藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/68cccc52000000000e0338d4?xsec_token=ABtXhVPf3XCifbdS9xOWaQrUIhSPztq-Wo96e39Htwjgw='},
+   {p:'douyin', lbl:'抖音站内搜索：字幕翻译 / 视频翻译', meta:'搜索词', u:'https://www.douyin.com/search/%E5%AD%97%E5%B9%95%E7%BF%BB%E8%AF%91?type=video'},
+  ]},
+ {id:'a8', idx:'08', name:'普通上班族', scene:'查外文资料 · 海外新闻 · 出国旅游 · 海淘', theme:'外网内容一眼看懂',
+  links:[
+   {p:'bilibili', lbl:'电脑屏幕文字随时翻译！游戏图片网页一秒识别', meta:'2026-08 · 从"查资料/海淘"切入', u:'https://www.bilibili.com/video/BV1Fe4f6uEDH/'},
+   {p:'xhs', wip:true, lbl:'出国沟通必备！iPhone自带实时翻译', meta:'1987赞/1947藏 · 2026-07-28', u:'https://www.xiaohongshu.com/explore/6a674f81000000001101de73?xsec_token=ABiAcgWO-JedgOipwGkdglYaUlAxP3fNQDX3WwzEO7N8U='},
+   {p:'xhs', lbl:'阅读体验超好的翻译插件，看英文必备', meta:'355赞/434藏 · 2026-08-01', u:'https://www.xiaohongshu.com/explore/6969bc6a000000001a01f3c4?xsec_token=ABkUuo7acCBLcr-Cz_KFw0oiqkEy58elyjKszPXEqrlG4='},
+   {p:'xhs', lbl:'比Mac自带翻译更好用的翻译神器，开源的', meta:'776赞/785藏 · 2026-05-27', u:'https://www.xiaohongshu.com/explore/6a16b1c00000000035023230?xsec_token=ABEmAV5j3Mb7CapHln7EfqQbzfBM9Hpq5Agj_sE3tZqEk='},
+  ]},
+];
+
+const HOT = [
+ {name:'AI 大模型发布 / 更新', tag:'AI 热点', trigger:'DeepSeek V4 Pro 正式版、GPT / Claude 等新模型上线',
+  play:'第一时间出"新模型翻译能力实测"：把任译喵接入新模型，做网页 / 划词 / 视频字幕翻译效果对比；标题公式"专治XX不说人话""新模型翻译到底行不行"。任译喵可调用 AI 大模型翻译——热点即产品卖点，测评即种草。',
+  links:[
+   {p:'bilibili', lbl:'专治Claude不说人话！哈佛博士怒做一键翻译神器', meta:'1.9万播放 · 2026-08-26', u:'https://www.bilibili.com/video/BV1Q4896EE4A/'},
+   {p:'xhs', wip:true, lbl:'ChatGPT Live 封神，翻译可能要失业了', meta:'1731赞/974藏 · 2026-07-10', u:'https://www.xiaohongshu.com/explore/6a5062ac0000000015024101?xsec_token=AB5zZCWp_3xdQWC_86DoEvAzrel-dZSvPL31CLv2OKhNI='},
+   {p:'bilibili', lbl:'教你用deepseek大模型翻译工具，实时翻译英文视频字幕', meta:'2026-08', u:'https://www.bilibili.com/video/BV16d8H6uE5g/'},
+  ]},
+ {name:'热门游戏发售 / 无官中游戏', tag:'游戏热点', trigger:'热门生肉游戏发售、老游戏无官中',
+  play:'出游戏生肉翻译教程、游戏汉化讨论帖，为未来"游戏汉化"功能预热用户心智。',
+  links:[
+   {p:'xhs', wip:true, lbl:'求推荐看直播可以实时翻译（真实需求佐证）', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a4931010000000016025267?xsec_token=ABQAGLTQjnGjf1t8V2H-IsaI41V6Bpl2jQcYHjmJMsHA4='},
+  ]},
+ {name:'热门影视 / 番剧更新', tag:'影视热点', trigger:'美剧、日漫、韩剧更新或生肉资源流出',
+  play:'24 小时内出"XX 无字幕？双语字幕这样开"教程，吃剧集搜索流量。',
+  links:[
+   {p:'xhs', lbl:'啃生肉必备神器！海外追剧党建议收藏', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a704caa000000002500792f?xsec_token=ABBOQtzPa-SNcewS_Y0UzNswgbpJrgpYvi37nolNZoqiM='},
+  ]},
+ {name:'开学季 / 留学申请季', tag:'节点热点', trigger:'9 月开学季、留学申请季等时间节点',
+  play:'学生党翻译神器清单、读文献效率内容，主攻小红书 + B站 两个主阵地。',
+  links:[
+   {p:'xhs', lbl:'8️⃣个翻译软件帮英国新留子搞定语言问题', meta:'4679赞/3710藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6701c59e000000001902c8b0?xsec_token=ABHhoZ0btsBrD5MJgFJmpb7y-p7YknWcDNtYvjQpzr5NI='},
+  ]},
+ {name:'平台热门内容形式（排名 / 横评类）', tag:'形式热点', trigger:'抖音"从夯到拉"式排名、横评等正流行的内容形式',
+  play:'套用平台正流行的内容形式（如抖音"从夯到拉"排名），把任译喵放进排名/横评里，蹭竞品关键词与搜索流量。',
+  links:[
+   {p:'douyin', lbl:'从夯到拉锐评2026年主流的翻译软件和插件（纯主观）——现成模板', meta:'2026-08-02', u:'https://www.douyin.com/video/7669316090207489280'},
+  ]},
+];
+
+const HOT_CONCL = '响应原则：热点发生后 24 小时内出稿；所有可利用的热点挂上"任译喵"这个钩子——将热点对于产品的流量效应最大化。';
+
+const PLATFORM = {bilibili:'B站', douyin:'抖音', xhs:'小红书'};
+
+/* ============ 渲染 ============ */
+function el(html){const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstChild;}
+
+/* 竞品卡片：渲染函数在 linkItem 定义之后调用 */
+
+
+/* 平台分发卡片 */
+function renderDistribution(){
+  const gMain = document.getElementById('pfGridMain');
+  const gSync = document.getElementById('pfGridSync');
+  const card = p => el(`<div class="pf ${p.main?'main':'sync'}">
+      <div class="pfhead"><span class="pfname">${p.name}</span><span class="role ${p.main?'main':'sync'}">${p.role}</span></div>
+      <div class="sec analysis"><span class="seclbl">分析</span>${p.analysis}</div>
+      <div class="sec fmt"><span class="seclbl">内容形式</span>${p.fmt}</div>
+    </div>`);
+  DISTRIBUTION.filter(p=>p.main).forEach(p=>gMain.appendChild(card(p)));
+  DISTRIBUTION.filter(p=>!p.main).forEach(p=>gSync.appendChild(card(p)));
+  document.getElementById('pfConcl').innerHTML = `<b>${DIST_CONCL}</b>`;
+}
+renderDistribution();
+
+/* 受众手风琴 */
+const audList = document.getElementById('audList');
+function linkItem(l, compact){
+  return `<a class="lk${compact?' lkc':''}" href="${l.u}" target="_blank" rel="noopener">
+    <span class="pl ${l.p}">${PLATFORM[l.p]}</span>
+    <span class="lbl">${l.lbl}</span>
+    <span class="meta">${l.meta}</span>
+    ${l.wip?'<span class="wip">含未上线功能</span>':''}
+    <span class="go">打开 ↗</span>
+  </a>`;
+}
+
+/* 竞品渲染 */
+function renderCompetitors(){
+  const g = document.getElementById('compGrid');
+  COMPETITORS.forEach(c=>{
+    g.appendChild(el(`<div class="comp">
+      <div class="cname">${c.name}</div>
+      <span class="ctag">${c.tag}</span>
+      <div class="cstatus">📈 ${c.status}</div>
+      <div class="canal">${c.analysis}</div>
+      <div class="clinks">${c.links.map(l=>linkItem(l,true)).join('')}</div>
+    </div>`));
+  });
+  document.getElementById('compConcl').innerHTML = `<b>总结：</b>${COMP_CONCL}`;
+}
+renderCompetitors();
+function renderAudiences(list){
+  audList.innerHTML='';
+  list.forEach(a=>{
+    const card = el(`<div class="aud" id="${a.id}">
+      <div class="aud-head">
+        <div class="idx">${a.idx}</div>
+        <div class="t"><div class="name">${a.name}</div><div class="scene">${a.scene}</div></div>
+        <div class="theme">${a.theme}</div>
+        <div class="arrow">▼</div>
+      </div>
+      <div class="aud-body"><div class="aud-inner">
+        <div class="theme-line">选题方向：<b>${a.theme}</b></div>
+        <div class="links">${a.links.map(linkItem).join('')}</div>
+      </div></div>
+    </div>`);
+    card.querySelector('.aud-head').addEventListener('click',()=>card.classList.toggle('open'));
+    audList.appendChild(card);
+  });
+}
+renderAudiences(AUDIENCES);
+
+/* 筛选 */
+document.getElementById('audFilter').addEventListener('input',e=>{
+  const q = e.target.value.trim().toLowerCase();
+  const list = AUDIENCES.filter(a=>!q || (a.name+a.scene+a.theme+a.links.map(l=>l.lbl).join(' ')).toLowerCase().includes(q));
+  renderAudiences(list);
+});
+
+/* 实时热点 */
+function renderHot(){
+  const g = document.getElementById('hotGrid');
+  HOT.forEach(h=>{
+    g.appendChild(el(`<div class="comp">
+      <div class="cname">${h.name}</div>
+      <span class="ctag">${h.tag}</span>
+      <div class="cstatus">⚡ ${h.trigger}</div>
+      <div class="canal">${h.play}</div>
+      ${h.links.length?`<div class="clinks">${h.links.map(l=>linkItem(l,true)).join('')}</div>`:''}
+    </div>`));
+  });
+  document.getElementById('hotConcl').innerHTML = `<b>${HOT_CONCL}</b>`;
+}
+renderHot();
+
+/* 导航高亮 */
+const navLinks = [...document.querySelectorAll('nav a')];
+const secs = ['competitors','distribution','audiences','hot'].map(id=>document.getElementById(id));
+const io = new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(en.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+en.target.id));
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
