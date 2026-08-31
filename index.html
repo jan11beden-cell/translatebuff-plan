@@ -91,6 +91,35 @@ section{padding:44px 0 8px}
   .pf-grid.pf-sync{grid-template-columns:1fr}
   .hot-grid{grid-template-columns:1fr}
 }
+/* 沉浸式翻译选题拆解 */
+.deepdive{margin-top:20px;background:linear-gradient(135deg,#f6f2ff,#eef0ff);border:1px solid #d9d2ff;border-radius:16px;padding:20px}
+.deepdive h3{font-size:16px;margin-bottom:12px}
+.dd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dd-item{background:#fff;border:1px solid #e6e0ff;border-radius:12px;padding:12px 14px}
+.dd-item .ddt{font-weight:700;font-size:13.5px}
+.dd-item .ddd{font-size:12.5px;color:var(--sub);margin:4px 0 8px}
+/* 起号与增长 */
+.subhead{font-size:16px;font-weight:700;margin:20px 0 10px}
+.grow-list{list-style:none;display:flex;flex-direction:column;gap:8px;padding:0}
+.grow-list li{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:13.5px;line-height:1.6}
+.grow-list li b{color:var(--brand2)}
+.kol-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kol-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(30,34,53,.04)}
+.kol-card .kname{font-size:15.5px;font-weight:700;color:var(--brand);margin-bottom:10px}
+.kol-card ul{padding-left:18px;font-size:13px;line-height:1.7;margin:0}
+.kol-card li{margin-bottom:6px}
+/* 热点预测表 */
+.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 10px rgba(30,34,53,.04)}
+.hot-table{width:100%;border-collapse:collapse;min-width:760px}
+.hot-table th{background:#f0f1f8;font-size:12.5px;color:var(--sub);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+.hot-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #eef0f6;vertical-align:top;line-height:1.55}
+.hot-table tr:last-child td{border-bottom:none}
+.hot-table .tt{white-space:nowrap;font-weight:600;color:var(--brand2)}
+.tlink{display:inline-block;font-size:12px;color:var(--brand);border:1px solid #d9d6ff;background:#f4f3ff;border-radius:6px;padding:1px 8px;margin:2px 0}
+@media (max-width:600px){
+  .dd-grid{grid-template-columns:1fr}
+  .kol-grid{grid-template-columns:1fr}
+}
 
 /* strategy */
 .quote{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;font-size:17px;box-shadow:0 2px 10px rgba(30,34,53,.04)}
@@ -183,7 +212,8 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
   <a href="#competitors" class="active">竞品 / 对标账号</a>
   <a href="#distribution">平台分发思路</a>
   <a href="#audiences">选题方向 &amp; 产品受众</a>
-  <a href="#hot">实时热点</a>
+  <a href="#growth">起号与增长</a>
+  <a href="#hot">市场热点预测表</a>
 </div></nav>
 
 <main class="wrap">
@@ -194,6 +224,7 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
     <div class="hint">📌 以下为与任译喵同为浏览器插件的同类产品（网页翻译 / 划词翻译 / 输入框翻译 / 视频字幕），含 2026 年活跃产品与 2026 年前的热度产品；参考链接均来自 B站 / 小红书，B站链接经官方接口核实发布时间。</div>
     <div class="comp-grid" id="compGrid"></div>
     <div class="concl" id="compConcl"></div>
+    <div class="deepdive" id="deepdive"></div>
   </section>
 
   <!-- 二、平台分发思路 -->
@@ -213,11 +244,21 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
     <div id="audList"></div>
   </section>
 
-  <!-- 四、实时热点 -->
+  <!-- 四、起号与增长 -->
+  <section id="growth">
+    <div class="sec-head"><span class="no">四</span><h2>起号与增长</h2><span class="en">Account Growth &amp; KOL</span></div>
+    <div class="hint">分两步走：前期先"无 KOL 快速起号"（最直接的方法），推广起量后再用 KOL / KOC 放大。</div>
+    <h3 class="subhead">① 账号快速养成（无 KOL，最直接的方法）</h3>
+    <ul class="grow-list" id="growQuick"></ul>
+    <h3 class="subhead">② KOL / KOC 协作（推广起量后）</h3>
+    <div class="kol-grid" id="kolGrid"></div>
+  </section>
+
+  <!-- 五、市场热点预测表 -->
   <section id="hot">
-    <div class="sec-head"><span class="no">四</span><h2>实时热点</h2><span class="en">Real-time Hot Topics</span></div>
-    <div class="hint">⚡ 热点响应机制：热点发生后 <b>24 小时内出稿</b>。任译喵可调用 AI 大模型进行翻译，因此 AI 类热点（如 DeepSeek V4 Pro 正式版上线）天然与产品强关联——<b>热点即卖点，测评即种草</b>。以下每张卡片：触发场景 → 内容打法 → 参考链接。</div>
-    <div class="hot-grid" id="hotGrid"></div>
+    <div class="sec-head"><span class="no">五</span><h2>市场热点预测表</h2><span class="en">September 2026 Forecast</span></div>
+    <div class="hint">📅 按时间顺序维护，当前先排 <b>2026 年 9 月</b>，后续月份随热点滚动更新。任译喵可调用 AI 大模型翻译——AI 类热点即产品卖点。</div>
+    <div class="table-wrap"><table class="hot-table" id="forecastTable"></table></div>
     <div class="concl" id="hotConcl"></div>
   </section>
 
@@ -349,34 +390,54 @@ const AUDIENCES = [
   ]},
 ];
 
-const HOT = [
- {name:'AI 大模型发布 / 更新', tag:'AI 热点', trigger:'DeepSeek V4 Pro 正式版、GPT / Claude 等新模型上线',
-  play:'第一时间出"新模型翻译能力实测"：把任译喵接入新模型，做网页 / 划词 / 视频字幕翻译效果对比；标题公式"专治XX不说人话""新模型翻译到底行不行"。任译喵可调用 AI 大模型翻译——热点即产品卖点，测评即种草。',
-  links:[
-   {p:'bilibili', lbl:'专治Claude不说人话！哈佛博士怒做一键翻译神器', meta:'1.9万播放 · 2026-08-26', u:'https://www.bilibili.com/video/BV1Q4896EE4A/'},
-   {p:'xhs', wip:true, lbl:'ChatGPT Live 封神，翻译可能要失业了', meta:'1731赞/974藏 · 2026-07-10', u:'https://www.xiaohongshu.com/explore/6a5062ac0000000015024101?xsec_token=AB5zZCWp_3xdQWC_86DoEvAzrel-dZSvPL31CLv2OKhNI='},
-   {p:'bilibili', lbl:'教你用deepseek大模型翻译工具，实时翻译英文视频字幕', meta:'2026-08', u:'https://www.bilibili.com/video/BV16d8H6uE5g/'},
-  ]},
- {name:'热门游戏发售 / 无官中游戏', tag:'游戏热点', trigger:'热门生肉游戏发售、老游戏无官中',
-  play:'出游戏生肉翻译教程、游戏汉化讨论帖，为未来"游戏汉化"功能预热用户心智。',
-  links:[
-   {p:'xhs', wip:true, lbl:'求推荐看直播可以实时翻译（真实需求佐证）', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a4931010000000016025267?xsec_token=ABQAGLTQjnGjf1t8V2H-IsaI41V6Bpl2jQcYHjmJMsHA4='},
-  ]},
- {name:'热门影视 / 番剧更新', tag:'影视热点', trigger:'美剧、日漫、韩剧更新或生肉资源流出',
-  play:'24 小时内出"XX 无字幕？双语字幕这样开"教程，吃剧集搜索流量。',
-  links:[
-   {p:'xhs', lbl:'啃生肉必备神器！海外追剧党建议收藏', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a704caa000000002500792f?xsec_token=ABBOQtzPa-SNcewS_Y0UzNswgbpJrgpYvi37nolNZoqiM='},
-  ]},
- {name:'开学季 / 留学申请季', tag:'节点热点', trigger:'9 月开学季、留学申请季等时间节点',
-  play:'学生党翻译神器清单、读文献效率内容，主攻小红书 + B站 两个主阵地。',
-  links:[
-   {p:'xhs', lbl:'8️⃣个翻译软件帮英国新留子搞定语言问题', meta:'4679赞/3710藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6701c59e000000001902c8b0?xsec_token=ABHhoZ0btsBrD5MJgFJmpb7y-p7YknWcDNtYvjQpzr5NI='},
-  ]},
- {name:'平台热门内容形式（排名 / 横评类）', tag:'形式热点', trigger:'抖音"从夯到拉"式排名、横评等正流行的内容形式',
-  play:'套用平台正流行的内容形式（如抖音"从夯到拉"排名），把任译喵放进排名/横评里，蹭竞品关键词与搜索流量。',
-  links:[
-   {p:'douyin', lbl:'从夯到拉锐评2026年主流的翻译软件和插件（纯主观）——现成模板', meta:'2026-08-02', u:'https://www.douyin.com/video/7669316090207489280'},
-  ]},
+const IMMERSIVE_TOPICS = [
+ {t:'场景组合拳教程（工具 × 场景）', d:'把翻译插件和 Zotero 等科研/学习工具组合出教程，收藏率高、长尾久',
+  links:[{p:'bilibili', lbl:'研究生必备文献阅读技能-沉浸式翻译+Zotero', meta:'1.3万播放 · 2026-05', u:'https://www.bilibili.com/video/BV1AK99B4EGP/'}]},
+ {t:'第三方安利贴（免费 + 神器话术）', d:'以"高效免费/用了离不开"的第三方口吻推荐，最易复制',
+  links:[{p:'xhs', lbl:'高效免费的浏览器翻译插件—沉浸式翻译', meta:'989赞/876藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/69c2a9590000000023027a94?xsec_token=ABoL6hzKJoCRhKAYa66FVr5CnnERc9CjBsVAcY5y7n8JU='}]},
+ {t:'版本更新公告（官方可信度）', d:'每次更新发一贴，低成本维持活跃并沉淀搜索词',
+  links:[{p:'xhs', lbl:'沉浸式翻译1.27.3更新｜界面更简洁好用', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/69e0ade8000000001f004961?xsec_token=ABjkz_qb02DZItfRccmvZVDu6wwQiUqFbdqo39ZDENsCQ='}]},
+ {t:'大V商业分析（借势第三方流量）', d:'果叔AI 这类大V自带流量，可主动投稿/提供素材引导其评测任译喵',
+  links:[{p:'bilibili', lbl:'一个翻译插件凭什么做到全球两千万级用户？深度分析', meta:'16.4万播放 · 2026-06', u:'https://www.bilibili.com/video/BV1buE26tExv/'}]},
+];
+
+const GROW_QUICK = [
+ '对标抄题：直接复刻"沉浸式翻译"已验证的高收藏选题（见第一部分选题拆解），把主角换成任译喵',
+ '搜索词截流：标题与正文铺满"翻译神器 / 翻译插件 / 留学必备 / 研究生"等关键词，吃三平台搜索长尾',
+ '开学季高频更新：9 月小红书每周 4-5 条、B站每周 2 条，用频率 + 热点撬动初始推荐',
+ '爆款复制：每周复盘数据，收藏率高的选题拆出"钩子"，复制 3-5 条变体',
+ '评论区经营：置顶官网链接；高频问题自问自答——评论区的真实提问就是下一期选题',
+ '蹭平台活动：投稿 B站话题活动、小红书官方话题与开学季话题，拿活动流量扶持',
+];
+
+const GROW_KOL = [
+ {name:'KOC 铺量期（推广起量后的第一步）', items:[
+  '素人 / 小博主置换：学生党、学习、留学、数码区 1千-1万粉 KOC，用会员 / 教程包置换笔记',
+  '降低创作门槛：给 KOC 提供安装教程 + 演示素材包，按效果结算小额佣金',
+  '官方号联动：KOC 笔记下官方号互动答疑，放大自然流量与信任感',
+ ]},
+ {name:'KOL 放大期（量级稳定后）', items:[
+  '中腰部达人单条合作：数码评测 / 学习区 10万-50万粉达人做横评与安利，把任译喵放进横评',
+  '联盟分销：参考沉浸式翻译的联盟计划，给达人 / 站长分成链接，按注册结算',
+  '内容共创：提供"AI 大模型翻译实测"等独家选题与素材，绑定达人长期合作',
+ ]},
+];
+
+const FORECAST = [
+ {t:'9月1-15日', ev:'开学季 · 新生入学', play:'学生党翻译神器清单、读文献效率教程', plat:'小红书 + B站', note:'主攻人群，开学即爆发',
+  link:{p:'xhs', lbl:'8个翻译软件帮英国新留子', meta:'4679赞 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6701c59e000000001902c8b0?xsec_token=ABHhoZ0btsBrD5MJgFJmpb7y-p7YknWcDNtYvjQpzr5NI='}},
+ {t:'9月上旬', ev:'苹果新品发布会（iPhone 18 预计）', play:'新机翻译功能实测、"比系统自带强在哪"对比', plat:'小红书 + 抖音', note:'蹭发布会热搜',
+  link:{p:'xhs', wip:true, lbl:'iPhone自带实时翻译', meta:'1987赞 · 2026-07-28', u:'https://www.xiaohongshu.com/explore/6a674f81000000001101de73?xsec_token=ABiAcgWO-JedgOipwGkdglYaUlAxP3fNQDX3WwzEO7N8U='}},
+ {t:'9月中下旬', ev:'留学申请季启动（英美 2027 Fall）', play:'选校官网翻译、申请材料、全英授课生存指南', plat:'小红书', note:'留学生主阵地',
+  link:{p:'xhs', lbl:'全英授课听不懂求推荐', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a68a0ca0000000011016442?xsec_token=ABJyJG01iBhAxEpDPbJLWeMeEwduk3GhZEs3owwspQ0Oo='}},
+ {t:'9月25日', ev:'中秋节', play:'海外留学生过中秋、与家人视频通话的翻译场景', plat:'小红书 + 视频号', note:'情感向易转发', link:null},
+ {t:'9月下旬', ev:'考研预报名 / 大纲发布', play:'考研英语外刊精读翻译、PDF文献翻译', plat:'B站 + 小红书', note:'备考人群',
+  link:{p:'bilibili', lbl:'研究生必备文献阅读技能', meta:'1.3万播放 · 2026-05', u:'https://www.bilibili.com/video/BV1AK99B4EGP/'}},
+ {t:'9月', ev:'四六级报名', play:'英语学习 + 翻译插件组合、备考神器', plat:'抖音 / 快手', note:'泛人群', link:null},
+ {t:'9月不定时', ev:'AI 大模型更新（DeepSeek 等）', play:'新模型翻译能力实测，任译喵接新模型对比', plat:'三平台', note:'24 小时响应',
+  link:{p:'bilibili', lbl:'专治Claude不说人话（标题模板）', meta:'1.9万播放 · 2026-08-26', u:'https://www.bilibili.com/video/BV1Q4896EE4A/'}},
+ {t:'9月不定时', ev:'热门游戏 / 影视生肉', play:'生肉翻译教程、双语字幕', plat:'抖音 + B站', note:'随时跟',
+  link:{p:'xhs', lbl:'啃生肉必备神器', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a704caa000000002500792f?xsec_token=ABBOQtzPa-SNcewS_Y0UzNswgbpJrgpYvi37nolNZoqiM='}},
 ];
 
 const HOT_CONCL = '响应原则：热点发生后 24 小时内出稿；所有可利用的热点挂上"任译喵"这个钩子——将热点对于产品的流量效应最大化。';
@@ -459,25 +520,57 @@ document.getElementById('audFilter').addEventListener('input',e=>{
   renderAudiences(list);
 });
 
-/* 实时热点 */
-function renderHot(){
-  const g = document.getElementById('hotGrid');
-  HOT.forEach(h=>{
-    g.appendChild(el(`<div class="comp">
-      <div class="cname">${h.name}</div>
-      <span class="ctag">${h.tag}</span>
-      <div class="cstatus">⚡ ${h.trigger}</div>
-      <div class="canal">${h.play}</div>
-      ${h.links.length?`<div class="clinks">${h.links.map(l=>linkItem(l,true)).join('')}</div>`:''}
+/* 沉浸式翻译选题拆解 */
+function renderDeepdive(){
+  const d = document.getElementById('deepdive');
+  d.appendChild(el('<h3>🎯 重点对标：沉浸式翻译的选题拆解（先把它的选题跑一遍，再换成任译喵）</h3>'));
+  const g = el('<div class="dd-grid"></div>');
+  IMMERSIVE_TOPICS.forEach(t=>{
+    g.appendChild(el(`<div class="dd-item">
+      <div class="ddt">${t.t}</div>
+      <div class="ddd">${t.d}</div>
+      ${t.links.map(l=>linkItem(l)).join('')}
     </div>`));
   });
+  d.appendChild(g);
+}
+renderDeepdive();
+
+/* 起号与增长 */
+function renderGrowth(){
+  const ul = document.getElementById('growQuick');
+  GROW_QUICK.forEach(s=>{
+    const idx = s.indexOf('：');
+    const b = idx>=0 ? `<b>${s.slice(0, idx+1)}</b>` : '';
+    ul.appendChild(el(`<li>${b}${s.slice(idx+1)}</li>`));
+  });
+  const kg = document.getElementById('kolGrid');
+  GROW_KOL.forEach(k=>{
+    kg.appendChild(el(`<div class="kol-card">
+      <div class="kname">${k.name}</div>
+      <ul>${k.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>`));
+  });
+}
+renderGrowth();
+
+/* 市场热点预测表 */
+function renderForecast(){
+  const tb = document.getElementById('forecastTable');
+  let rows = '<thead><tr><th>时间</th><th>热点事件</th><th>选题打法</th><th>平台</th><th>备注</th><th>参考</th></tr></thead><tbody>';
+  FORECAST.forEach(r=>{
+    const lk = r.link ? `<a class="tlink" href="${r.link.u}" target="_blank" rel="noopener">↗ ${PLATFORM[r.link.p]} · ${r.link.lbl}</a>` : '—';
+    rows += `<tr><td class="tt">${r.t}</td><td>${r.ev}</td><td>${r.play}</td><td>${r.plat}</td><td>${r.note}</td><td>${lk}</td></tr>`;
+  });
+  rows += '</tbody>';
+  tb.innerHTML = rows;
   document.getElementById('hotConcl').innerHTML = `<b>${HOT_CONCL}</b>`;
 }
-renderHot();
+renderForecast();
 
 /* 导航高亮 */
 const navLinks = [...document.querySelectorAll('nav a')];
-const secs = ['competitors','distribution','audiences','hot'].map(id=>document.getElementById(id));
+const secs = ['competitors','distribution','audiences','growth','hot'].map(id=>document.getElementById(id));
 const io = new IntersectionObserver(es=>{
   es.forEach(en=>{
     if(en.isIntersecting){
