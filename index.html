@@ -215,7 +215,7 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
   <a href="#competitors" class="active">竞品 / 对标账号</a>
   <a href="#distribution">平台分发思路</a>
   <a href="#audiences">选题方向 &amp; 产品受众</a>
-  <a href="#growth">起号与增长</a>
+  <a href="#growth">起号计划</a>
   <a href="#hot">市场热点预测表</a>
 </div></nav>
 
@@ -247,14 +247,19 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
     <div id="audList"></div>
   </section>
 
-  <!-- 四、起号与增长 -->
+  <!-- 四、起号计划 -->
   <section id="growth">
-    <div class="sec-head"><span class="no">四</span><h2>起号与增长</h2><span class="en">Account Growth &amp; KOL</span></div>
-    <div class="hint">分两步走：前期先"无 KOL 快速起号"（最直接的方法），推广起量后再用 KOL / KOC 放大。</div>
-    <h3 class="subhead">① 账号快速养成（无 KOL，最直接的方法）</h3>
+    <div class="sec-head"><span class="no">四</span><h2>起号计划</h2><span class="en">Launch Plan &amp; Budget</span></div>
+    <div class="hint">分四步：① 前期起号（无 KOL 快速起号）→ ② KOC 铺量（前期同步进行）→ ③ KOL 放大（推广起量后单独操作）→ ④ 推广成本预估。</div>
+    <h3 class="subhead">① 前期起号（无 KOL 快速起号，最直接的方法）</h3>
     <ul class="grow-list" id="growQuick"></ul>
-    <h3 class="subhead">② KOL / KOC 协作（推广起量后）</h3>
+    <h3 class="subhead">② KOC 铺量（前期同步进行）</h3>
+    <div class="kol-grid" id="kocGrid"></div>
+    <h3 class="subhead">③ KOL 放大（推广起量后单独操作）</h3>
     <div class="kol-grid" id="kolGrid"></div>
+    <h3 class="subhead">④ 推广成本预估（前期月度预算）</h3>
+    <div class="table-wrap"><table class="hot-table" id="budgetTable"></table></div>
+    <div class="concl" id="budgetConcl"></div>
   </section>
 
   <!-- 五、市场热点预测表 -->
@@ -434,24 +439,33 @@ const IMMERSIVE_TOPICS = [
 const GROW_QUICK = [
  '对标抄题：直接复刻"沉浸式翻译"已验证的高收藏选题（见第一部分选题拆解），把主角换成任译喵',
  '搜索词截流：标题与正文铺满"翻译神器 / 翻译插件 / 留学必备 / 研究生"等关键词，吃三平台搜索长尾',
- '开学季高频更新：9 月小红书每周 4-5 条、B站每周 2 条，用频率 + 热点撬动初始推荐',
- '爆款复制：每周复盘数据，收藏率高的选题拆出"钩子"，复制 3-5 条变体',
- '评论区经营：置顶官网链接；高频问题自问自答——评论区的真实提问就是下一期选题',
- '蹭平台活动：投稿 B站话题活动、小红书官方话题与开学季话题，拿活动流量扶持',
+ '开学季内容排期（9月1-10日开学周）：小红书每天 1 条、连续 10 天，B站每周 2 条；内容按热点预测表提前预制，开学当天准时发布抢首波流量',
+ '爆款复用：复用"可替换产品功能的爆款视频选题"（竞品爆款换成任译喵重做）+ 复用自制内容里跑出量的选题做系列化',
+];
+
+const GROW_KOC = [
+ {name:'KOC 铺量（前期同步进行）', items:[
+  '素人 / 小博主置换：学生党、学习、留学、数码区 1千-1万粉 KOC，用会员 / 教程包置换笔记',
+  '阶梯报价：按粉丝量与数据表现 50-200 元/条，每周合作 3-4 条',
+  '降低创作门槛：给 KOC 提供安装教程 + 演示素材包，官方号在其笔记下互动答疑放大流量',
+ ]},
 ];
 
 const GROW_KOL = [
- {name:'KOC 铺量期（推广起量后的第一步）', items:[
-  '素人 / 小博主置换：学生党、学习、留学、数码区 1千-1万粉 KOC，用会员 / 教程包置换笔记',
-  '降低创作门槛：给 KOC 提供安装教程 + 演示素材包，按效果结算小额佣金',
-  '官方号联动：KOC 笔记下官方号互动答疑，放大自然流量与信任感',
- ]},
- {name:'KOL 放大期（量级稳定后）', items:[
+ {name:'KOL 放大（推广起量后单独操作）', items:[
   '中腰部达人单条合作：数码评测 / 学习区 10万-50万粉达人做横评与安利，把任译喵放进横评',
   '联盟分销：参考沉浸式翻译的联盟计划，给达人 / 站长分成链接，按注册结算',
   '内容共创：提供"AI 大模型翻译实测"等独家选题与素材，绑定达人长期合作',
  ]},
 ];
+
+const BUDGET = [
+ {item:'外团视频（外包制作）', price:'50 元/条', freq:'1-2 条/天', budget:'1500-3000 元/月', note:'如有特殊起量选题，再加大投入'},
+ {item:'KOC 合作（阶梯报价）', price:'50-200 元/条', freq:'每周 3-4 条', budget:'3000 元/月以内', note:'按粉丝量与数据表现阶梯定价'},
+ {item:'KOL 合作', price:'按达人报价', freq:'起量后评估', budget:'另行评估', note:'爆款选题验证后再投放，暂不计入前期预算'},
+];
+
+const BUDGET_TOTAL = '前期月预算合计：约 4500-6000 元（外团 + KOC）；KOL 费用在推广起量后按达人报价单独评估。';
 
 const FORECAST = [
  {t:'9月1-10日', ev:'全国高校开学季（新生报到）', play:'学生党翻译神器清单、读文献效率教程', plat:'小红书 + B站', cap:'ok', note:'主攻人群开学装机，最高优先级',
@@ -572,7 +586,7 @@ function renderDeepdive(){
 }
 renderDeepdive();
 
-/* 起号与增长 */
+/* 起号计划 */
 function renderGrowth(){
   const ul = document.getElementById('growQuick');
   GROW_QUICK.forEach(s=>{
@@ -580,13 +594,25 @@ function renderGrowth(){
     const b = idx>=0 ? `<b>${s.slice(0, idx+1)}</b>` : '';
     ul.appendChild(el(`<li>${b}${s.slice(idx+1)}</li>`));
   });
-  const kg = document.getElementById('kolGrid');
-  GROW_KOL.forEach(k=>{
-    kg.appendChild(el(`<div class="kol-card">
-      <div class="kname">${k.name}</div>
-      <ul>${k.items.map(i=>`<li>${i}</li>`).join('')}</ul>
-    </div>`));
+  const renderKol = (gridId, list) => {
+    const kg = document.getElementById(gridId);
+    list.forEach(k=>{
+      kg.appendChild(el(`<div class="kol-card">
+        <div class="kname">${k.name}</div>
+        <ul>${k.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+      </div>`));
+    });
+  };
+  renderKol('kocGrid', GROW_KOC);
+  renderKol('kolGrid', GROW_KOL);
+  const tb = document.getElementById('budgetTable');
+  let rows = '<thead><tr><th>项目</th><th>单价</th><th>频率</th><th>月预算</th><th>备注</th></tr></thead><tbody>';
+  BUDGET.forEach(b=>{
+    rows += `<tr><td style="font-weight:600">${b.item}</td><td>${b.price}</td><td>${b.freq}</td><td>${b.budget}</td><td>${b.note}</td></tr>`;
   });
+  rows += '</tbody>';
+  tb.innerHTML = rows;
+  document.getElementById('budgetConcl').innerHTML = `<b>${BUDGET_TOTAL}</b>`;
 }
 renderGrowth();
 
