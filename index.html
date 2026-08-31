@@ -116,6 +116,9 @@ section{padding:44px 0 8px}
 .hot-table tr:last-child td{border-bottom:none}
 .hot-table .tt{white-space:nowrap;font-weight:600;color:var(--brand2)}
 .tlink{display:inline-block;font-size:12px;color:var(--brand);border:1px solid #d9d6ff;background:#f4f3ff;border-radius:6px;padding:1px 8px;margin:2px 0}
+.cap{display:inline-block;font-size:11.5px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.cap-ok{color:#1a7f4b;background:#e9f7ef;border:1px solid #c8ecd8}
+.cap-wip{color:#b45309;background:#fef3c7;border:1px solid #fcd34d}
 @media (max-width:600px){
   .dd-grid{grid-template-columns:1fr}
   .kol-grid{grid-template-columns:1fr}
@@ -257,7 +260,7 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
   <!-- 五、市场热点预测表 -->
   <section id="hot">
     <div class="sec-head"><span class="no">五</span><h2>市场热点预测表</h2><span class="en">September 2026 Forecast</span></div>
-    <div class="hint">📅 按时间顺序维护，当前先排 <b>2026 年 9 月</b>，后续月份随热点滚动更新。任译喵可调用 AI 大模型翻译——AI 类热点即产品卖点。</div>
+    <div class="hint">📅 按时间顺序维护，当前先排 <b>2026 年 9 月</b>，事件尽量具体（传闻类以官方发布为准，发布后替换为准确时间）。「功能」列标注：✅ 用已有功能就能做的热点；🔧 需等未来功能上线才能做的热点。</div>
     <div class="table-wrap"><table class="hot-table" id="forecastTable"></table></div>
     <div class="concl" id="hotConcl"></div>
   </section>
@@ -451,20 +454,19 @@ const GROW_KOL = [
 ];
 
 const FORECAST = [
- {t:'9月1-15日', ev:'开学季 · 新生入学', play:'学生党翻译神器清单、读文献效率教程', plat:'小红书 + B站', note:'主攻人群，开学即爆发',
+ {t:'9月1-10日', ev:'全国高校开学季（新生报到）', play:'学生党翻译神器清单、读文献效率教程', plat:'小红书 + B站', cap:'ok', note:'主攻人群，开学即爆发',
   link:{p:'xhs', lbl:'8个翻译软件帮英国新留子', meta:'4679赞 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6701c59e000000001902c8b0?xsec_token=ABHhoZ0btsBrD5MJgFJmpb7y-p7YknWcDNtYvjQpzr5NI='}},
- {t:'9月上旬', ev:'苹果新品发布会（iPhone 18 预计）', play:'新机翻译功能实测、"比系统自带强在哪"对比', plat:'小红书 + 抖音', note:'蹭发布会热搜',
-  link:{p:'xhs', wip:true, lbl:'iPhone自带实时翻译', meta:'1987赞 · 2026-07-28', u:'https://www.xiaohongshu.com/explore/6a674f81000000001101de73?xsec_token=ABiAcgWO-JedgOipwGkdglYaUlAxP3fNQDX3WwzEO7N8U='}},
- {t:'9月中下旬', ev:'留学申请季启动（英美 2027 Fall）', play:'选校官网翻译、申请材料、全英授课生存指南', plat:'小红书', note:'留学生主阵地',
-  link:{p:'xhs', lbl:'全英授课听不懂求推荐', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a68a0ca0000000011016442?xsec_token=ABJyJG01iBhAxEpDPbJLWeMeEwduk3GhZEs3owwspQ0Oo='}},
- {t:'9月25日', ev:'中秋节', play:'海外留学生过中秋、与家人视频通话的翻译场景', plat:'小红书 + 视频号', note:'情感向易转发', link:null},
- {t:'9月下旬', ev:'考研预报名 / 大纲发布', play:'考研英语外刊精读翻译、PDF文献翻译', plat:'B站 + 小红书', note:'备考人群',
+ {t:'9月中旬', ev:'考研预报名开启（2027 考研）', play:'考研英语外刊精读翻译、PDF文献翻译', plat:'B站 + 小红书', cap:'wip', note:'备考人群；外刊精读用已有功能，PDF 文献翻译待开发',
   link:{p:'bilibili', lbl:'研究生必备文献阅读技能', meta:'1.3万播放 · 2026-05', u:'https://www.bilibili.com/video/BV1AK99B4EGP/'}},
- {t:'9月', ev:'四六级报名', play:'英语学习 + 翻译插件组合、备考神器', plat:'抖音 / 快手', note:'泛人群', link:null},
- {t:'9月不定时', ev:'AI 大模型更新（DeepSeek 等）', play:'新模型翻译能力实测，任译喵接新模型对比', plat:'三平台', note:'24 小时响应',
+ {t:'9月下旬', ev:'留学申请季（英美 2027 Fall 早申临近）', play:'选校官网翻译、申请材料、全英授课生存指南', plat:'小红书', cap:'ok', note:'留学生主阵地',
+  link:{p:'xhs', lbl:'全英授课听不懂求推荐', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a68a0ca0000000011016442?xsec_token=ABJyJG01iBhAxEpDPbJLWeMeEwduk3GhZEs3owwspQ0Oo='}},
+ {t:'9月不定时', ev:'DeepSeek V4 正式版发布（传闻 9 月，以官方为准）', play:'新模型翻译能力实测，任译喵接入新模型做对比', plat:'三平台', cap:'ok', note:'24 小时响应；调用 AI 大模型为已有功能',
   link:{p:'bilibili', lbl:'专治Claude不说人话（标题模板）', meta:'1.9万播放 · 2026-08-26', u:'https://www.bilibili.com/video/BV1Q4896EE4A/'}},
- {t:'9月不定时', ev:'热门游戏 / 影视生肉', play:'生肉翻译教程、双语字幕', plat:'抖音 + B站', note:'随时跟',
+ {t:'9月不定时', ev:'《黑神话：悟空》DLC 发售（传闻 2026 年内，以官方为准）', play:'游戏生肉/汉化补丁讨论、游戏字幕翻译教程', plat:'抖音 + B站', cap:'wip', note:'游戏汉化为待开发功能，先预热心智',
+  link:{p:'xhs', wip:true, lbl:'求推荐看直播可以实时翻译（需求佐证）', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a4931010000000016025267?xsec_token=ABQAGLTQjnGjf1t8V2H-IsaI41V6Bpl2jQcYHjmJMsHA4='}},
+ {t:'9月不定时', ev:'秋季档外语新剧 / 新番开播（具体片名以上线为准）', play:'双语字幕教程、"XX 无字幕？这样开"', plat:'抖音 + B站', cap:'ok', note:'视频字幕为已有功能',
   link:{p:'xhs', lbl:'啃生肉必备神器', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/6a704caa000000002500792f?xsec_token=ABBOQtzPa-SNcewS_Y0UzNswgbpJrgpYvi37nolNZoqiM='}},
+ {t:'9月', ev:'四六级报名', play:'英语学习 + 翻译插件组合、备考神器', plat:'抖音 / 快手', cap:'ok', note:'泛人群', link:null},
 ];
 
 const HOT_CONCL = '响应原则：热点发生后 24 小时内出稿；所有可利用的热点挂上"任译喵"这个钩子——将热点对于产品的流量效应最大化。';
@@ -556,7 +558,7 @@ function renderDeepdive(){
     g.appendChild(el(`<div class="dd-item">
       <div class="ddt">${t.t}</div>
       <div class="ddd">${t.d}</div>
-      ${t.links.map(l=>linkItem(l)).join('')}
+      ${t.links.map(l=>linkItem(l,true)).join('')}
     </div>`));
   });
   d.appendChild(g);
@@ -584,10 +586,11 @@ renderGrowth();
 /* 市场热点预测表 */
 function renderForecast(){
   const tb = document.getElementById('forecastTable');
-  let rows = '<thead><tr><th>时间</th><th>热点事件</th><th>选题打法</th><th>平台</th><th>备注</th><th>参考</th></tr></thead><tbody>';
+  let rows = '<thead><tr><th>时间</th><th>热点事件</th><th>选题打法</th><th>平台</th><th>功能</th><th>备注</th><th>参考</th></tr></thead><tbody>';
   FORECAST.forEach(r=>{
     const lk = r.link ? `<a class="tlink" href="${r.link.u}" target="_blank" rel="noopener">↗ ${PLATFORM[r.link.p]} · ${r.link.lbl}</a>` : '—';
-    rows += `<tr><td class="tt">${r.t}</td><td>${r.ev}</td><td>${r.play}</td><td>${r.plat}</td><td>${r.note}</td><td>${lk}</td></tr>`;
+    const cap = r.cap==='wip' ? '<span class="cap cap-wip">🔧 未来功能</span>' : '<span class="cap cap-ok">✅ 已有功能</span>';
+    rows += `<tr><td class="tt">${r.t}</td><td>${r.ev}</td><td>${r.play}</td><td>${r.plat}</td><td>${cap}</td><td>${r.note}</td><td>${lk}</td></tr>`;
   });
   rows += '</tbody>';
   tb.innerHTML = rows;
