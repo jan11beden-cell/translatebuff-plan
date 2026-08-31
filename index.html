@@ -391,14 +391,41 @@ const AUDIENCES = [
 ];
 
 const IMMERSIVE_TOPICS = [
- {t:'场景组合拳教程（工具 × 场景）', d:'把翻译插件和 Zotero 等科研/学习工具组合出教程，收藏率高、长尾久',
-  links:[{p:'bilibili', lbl:'研究生必备文献阅读技能-沉浸式翻译+Zotero', meta:'1.3万播放 · 2026-05', u:'https://www.bilibili.com/video/BV1AK99B4EGP/'}]},
- {t:'第三方安利贴（免费 + 神器话术）', d:'以"高效免费/用了离不开"的第三方口吻推荐，最易复制',
-  links:[{p:'xhs', lbl:'高效免费的浏览器翻译插件—沉浸式翻译', meta:'989赞/876藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/69c2a9590000000023027a94?xsec_token=ABoL6hzKJoCRhKAYa66FVr5CnnERc9CjBsVAcY5y7n8JU='}]},
- {t:'版本更新公告（官方可信度）', d:'每次更新发一贴，低成本维持活跃并沉淀搜索词',
-  links:[{p:'xhs', lbl:'沉浸式翻译1.27.3更新｜界面更简洁好用', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/69e0ade8000000001f004961?xsec_token=ABjkz_qb02DZItfRccmvZVDu6wwQiUqFbdqo39ZDENsCQ='}]},
- {t:'大V商业分析（借势第三方流量）', d:'果叔AI 这类大V自带流量，可主动投稿/提供素材引导其评测任译喵',
-  links:[{p:'bilibili', lbl:'一个翻译插件凭什么做到全球两千万级用户？深度分析', meta:'16.4万播放 · 2026-06', u:'https://www.bilibili.com/video/BV1buE26tExv/'}]},
+ {t:'① 场景组合拳教程（插件 × 学习/科研工具）', d:'把翻译插件和 Zotero 等工具组合出教程，收藏率高、搜索长尾久',
+  links:[
+   {p:'bilibili', lbl:'研究生必备文献阅读技能-沉浸式翻译+Zotero', meta:'1.3万播放 · 2026-05', u:'https://www.bilibili.com/video/BV1AK99B4EGP/'},
+   {p:'xhs', lbl:'Zotero实现左右对照翻译，小白教程', meta:'1245赞/1449藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6a79e8400000000006005e10?xsec_token=ABhUDUrPLijWfCKNsR5kHjLpWHn7ltduiCcTp7SbyBZIA='},
+  ]},
+ {t:'② 第三方安利贴（免费 + 神器话术）', d:'以"高效免费/用了离不开"的第三方口吻推荐，最易复制',
+  links:[
+   {p:'xhs', lbl:'高效免费的浏览器翻译插件—沉浸式翻译', meta:'989赞/876藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/69c2a9590000000023027a94?xsec_token=ABoL6hzKJoCRhKAYa66FVr5CnnERc9CjBsVAcY5y7n8JU='},
+  ]},
+ {t:'③ 版本更新公告（官方可信度 + 搜索词沉淀）', d:'每次更新发一贴，低成本维持活跃、沉淀"翻译插件"搜索词',
+  links:[
+   {p:'xhs', lbl:'沉浸式翻译1.27.3更新｜界面更简洁好用', meta:'2026-08-30', u:'https://www.xiaohongshu.com/explore/69e0ade8000000001f004961?xsec_token=ABjkz_qb02DZItfRccmvZVDu6wwQiUqFbdqo39ZDENsCQ='},
+  ]},
+ {t:'④ 对比横评（"比 XX 更好用"钩子）', d:'和系统自带 / 其他插件对比，蹭对方的搜索词与话题热度',
+  links:[
+   {p:'xhs', lbl:'比Mac自带翻译更好用的翻译神器，开源的', meta:'776赞/785藏 · 2026-05-27', u:'https://www.xiaohongshu.com/explore/6a16b1c00000000035023230?xsec_token=ABEmAV5j3Mb7CapHln7EfqQbzfBM9Hpq5Agj_sE3tZqEk='},
+   {p:'douyin', lbl:'从夯到拉锐评2026年主流翻译软件和插件（横评模板）', meta:'2026-08-02', u:'https://www.douyin.com/video/7669316090207489280'},
+  ]},
+ {t:'⑤ 痛点切入演示（先戳痛点再上解法）', d:'"看英文资料太慢 / 浏览器翻译罢工"开场，再演示插件解决',
+  links:[
+   {p:'bilibili', lbl:'英文资料看太慢？一个插件让网站和视频一键变中文', meta:'2026-08', u:'https://www.bilibili.com/video/BV1xSh364Emw/'},
+  ]},
+ {t:'⑥ 清单盘点（留学 / 研究生必备工具）', d:'打包进"必备清单"，最后放对比表格图，收藏率最高',
+  links:[
+   {p:'xhs', lbl:'吐血整理｜研究生必备工具（2026年最新）', meta:'445赞/736藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6a865dcb0000000014026809?xsec_token=AB7dqCJCQdMMcagbiuvhWELM1SoQWve_DJsTGyVmqsX-U='},
+   {p:'xhs', lbl:'8️⃣个翻译软件帮英国新留子搞定语言问题', meta:'4679赞/3710藏 · 2026-08-30', u:'https://www.xiaohongshu.com/explore/6701c59e000000001902c8b0?xsec_token=ABHhoZ0btsBrD5MJgFJmpb7y-p7YknWcDNtYvjQpzr5NI='},
+  ]},
+ {t:'⑦ AI 大模型结合教程（插件接新模型）', d:'紧跟 AI 热点，做"插件 + 大模型"翻译效果实测教程——热点即卖点',
+  links:[
+   {p:'bilibili', lbl:'教你用deepseek大模型翻译工具，实时翻译英文视频字幕', meta:'2026-08', u:'https://www.bilibili.com/video/BV16d8H6uE5g/'},
+  ]},
+ {t:'⑧ 短视频效果演示（前 3 秒直接上效果）', d:'30-60 秒演示网页/字幕翻译前后对比，适合抖音、小红书视频笔记',
+  links:[
+   {p:'xhs', lbl:'阅读体验超好的翻译插件，看英文必备（视频笔记）', meta:'355赞/434藏 · 2026-08-01', u:'https://www.xiaohongshu.com/explore/6969bc6a000000001a01f3c4?xsec_token=ABkUuo7acCBLcr-Cz_KFw0oiqkEy58elyjKszPXEqrlG4='},
+  ]},
 ];
 
 const GROW_QUICK = [
@@ -523,7 +550,7 @@ document.getElementById('audFilter').addEventListener('input',e=>{
 /* 沉浸式翻译选题拆解 */
 function renderDeepdive(){
   const d = document.getElementById('deepdive');
-  d.appendChild(el('<h3>🎯 重点对标：沉浸式翻译的选题拆解（先把它的选题跑一遍，再换成任译喵）</h3>'));
+  d.appendChild(el('<h3>🎯 重点对标：沉浸式翻译（及同类插件）的选题拆解——以下每条都是新号可以直接复制执行的选题模式</h3>'));
   const g = el('<div class="dd-grid"></div>');
   IMMERSIVE_TOPICS.forEach(t=>{
     g.appendChild(el(`<div class="dd-item">
